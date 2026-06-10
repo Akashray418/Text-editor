@@ -1,0 +1,87 @@
+import java.util.Scanner;
+
+class TextEditor {
+    private StringBuilder text;
+
+    public TextEditor() {
+        text = new StringBuilder();
+    }
+
+    public void addText(String str) {
+        text.append(str);
+        System.out.println("Text Added!");
+    }
+
+    public void showText() {
+        System.out.println("Current Text: " + text);
+    }
+
+    public void toUpperCase() {
+        String upper = text.toString().toUpperCase();
+        text = new StringBuilder(upper);
+        System.out.println("Converted to Uppercase!");
+    }
+
+    public void countCharacters() {
+        System.out.println("Total Characters: " + text.length());
+    }
+
+    public void deleteText() {
+        text.delete(0, text.length());
+        System.out.println("Text Deleted!");
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        TextEditor editor = new TextEditor();
+        int choice;
+
+        do {
+            System.out.println("\n--- TEXT EDITOR MENU ---");
+            System.out.println("1. Add Text");
+            System.out.println("2. Show Text");
+            System.out.println("3. Convert to Uppercase");
+            System.out.println("4. Count Characters");
+            System.out.println("5. Delete Text");
+            System.out.println("6. Exit");
+            System.out.print("Enter Choice: ");
+
+            choice = sc.nextInt();
+            sc.nextLine();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter Text: ");
+                    String str = sc.nextLine();
+                    editor.addText(str);
+                    break;
+
+                case 2:
+                    editor.showText();
+                    break;
+
+                case 3:
+                    editor.toUpperCase();
+                    break;
+
+                case 4:
+                    editor.countCharacters();
+                    break;
+
+                case 5:
+                    editor.deleteText();
+                    break;
+
+                case 6:
+                    System.out.println("Program Closed!");
+                    break;
+
+                default:
+                    System.out.println("Invalid Choice!");
+            }
+
+        } while (choice != 6);
+
+        sc.close();
+    }
+}
