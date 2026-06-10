@@ -1,0 +1,114 @@
+import java.util.Scanner;
+
+public class project2 {
+
+    private StringBuffer textBuffer;
+
+    public project2() {
+        textBuffer = new StringBuffer();
+    }
+
+    public void addText(String text) {
+        textBuffer.append(text);
+        System.out.println("Text added successfully!");
+    }
+
+    public void displayText() {
+        System.out.println("Text: " + textBuffer.toString());
+    }
+
+    public void reverseText() {
+        textBuffer.reverse();
+        System.out.println("Text reversed successfully!");
+    }
+
+    public void replaceText(String oldText, String newText) {
+        int index = textBuffer.indexOf(oldText);
+
+        if (index != -1) {
+            textBuffer.replace(index, index + oldText.length(), newText);
+            System.out.println("Text replaced successfully!");
+        } else {
+            System.out.println("Text not found!");
+        }
+    }
+
+    public void clearText() {
+        textBuffer.setLength(0);
+        System.out.println("Text cleared successfully!");
+    }
+
+    public void countCharacters() {
+        System.out.println("Total Characters: " + textBuffer.length());
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        project2 doc = new project2();
+
+        int choice;
+
+        do {
+            System.out.println("\n===== SIMPLE TEXT EDITOR =====");
+            System.out.println("1. Add Text");
+            System.out.println("2. Display Text");
+            System.out.println("3. Reverse Text");
+            System.out.println("4. Replace Text");
+            System.out.println("5. Clear Text");
+            System.out.println("6. Count Characters");
+            System.out.println("7. Exit");
+            System.out.print("Enter your choice: ");
+
+            choice = sc.nextInt();
+            sc.nextLine();
+
+            switch (choice) {
+
+                case 1:
+                    System.out.print("Enter text: ");
+                    String text = sc.nextLine();
+                    doc.addText(text);
+                    break;
+
+                case 2:
+                    doc.displayText();
+                    break;
+
+                case 3:
+                    doc.reverseText();
+                    doc.displayText();
+                    break;
+
+                case 4:
+                    System.out.print("Enter old text: ");
+                    String oldText = sc.nextLine();
+
+                    System.out.print("Enter new text: ");
+                    String newText = sc.nextLine();
+
+                    doc.replaceText(oldText, newText);
+                    doc.displayText();
+                    break;
+
+                case 5:
+                    doc.clearText();
+                    break;
+
+                case 6:
+                    doc.countCharacters();
+                    break;
+
+                case 7:
+                    System.out.println("Exiting Program...");
+                    break;
+
+                default:
+                    System.out.println("Invalid Choice!");
+            }
+
+        } while (choice != 7);
+
+        sc.close();
+    }
+}
